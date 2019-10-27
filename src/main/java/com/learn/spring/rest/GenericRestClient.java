@@ -14,7 +14,7 @@ public class GenericRestClient<T, V> {
 			Class<V> genericClass) throws ResourceAccessException, Exception {
 		
 		restTemplate.setErrorHandler(errorHandler);
-		HttpHeaders headers = new HttpHeaders();
+		HttpHeaders headers = requestDetails.getHttpHeaders();
 		
 		HttpEntity<T> entity = new HttpEntity<T>(data, headers);
 		ResponseEntity<V> response = restTemplate.exchange(requestDetails.getUrl(), requestDetails.getRequestType(),
