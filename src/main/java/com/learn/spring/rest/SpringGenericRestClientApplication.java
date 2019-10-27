@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
@@ -41,9 +42,11 @@ public class SpringGenericRestClientApplication implements CommandLineRunner {
 		};
 
 		try {
+			
+			HttpHeaders httpHeaders = new HttpHeaders();
 
 			String responseBody = new GenericRestClient<String, String>().execute(
-					new RequestDetails("https://jsonplaceholder.typicode.com/todos", HttpMethod.GET), " ", responseHandler,
+					new RequestDetails("https://jsonplaceholder.typicode.com/todos", HttpMethod.GET, httpHeaders), " ", responseHandler,
 					String.class);
 
 			System.out.println(responseBody);
